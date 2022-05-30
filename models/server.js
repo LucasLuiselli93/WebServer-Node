@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const { dbConnection } = require('../Database/configDb')
 const bodyParser = require<("body-parser")
 
 
@@ -10,18 +11,22 @@ class Server{
        
         this.port = process.env.PORT
 
+        //conectar base de datos
+        this.conectDB()
 
         // MIDDLEWARE funciones que se encargan de la gestion de los datos, 
         //la mensajeria, la autenticacion, y la gestion dela api
         this.middleware()
 
-
-
         // Rutas de la app
         this.routes()
 
-
         
+        
+    }
+
+    async conectDB(){
+      await dbConnection()
     }
 
     middleware(){
@@ -36,6 +41,7 @@ class Server{
       this.app.use(express.urlencoded({extended: true})); // para el formData
       this.app.use(express.json() );
     
+
 
     }
 
