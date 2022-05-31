@@ -31,13 +31,11 @@ const usersDelete = async (req, res = response) => {
 
   const {id} = req.params
 
-  const user = await Users.findByIdAndUpdate( id, {state:false})
+  const user = await Users.findByIdAndUpdate( id, {state:false});
 
 
     res.json(
-    { user
-    
-    }
+    { user    }
     )
   }
 
